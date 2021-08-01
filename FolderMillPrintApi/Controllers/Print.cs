@@ -80,7 +80,8 @@ namespace FolderMillPrintApi.Controllers
             // convert filename to FILENAME_USERNAME_PRINTERNAME.EXT
             string fileName = System.IO.Path.GetFileNameWithoutExtension(printRequest.FileName);
             string fileExt = System.IO.Path.GetExtension(printRequest.FileName);
-            string formattedFileName = $"{DateTime.Now.ToString("yyMMdd_hhmmss")}_{fileName}_{printRequest.Username}_{printRequest.PrinterName}{fileExt}";
+            string printerName = printRequest.PrinterName.Replace(" ", "_");
+            string formattedFileName = $"{DateTime.Now.ToString("yyMMdd_hhmmss")}_{fileName}_{printRequest.Username}_{printerName.Trim()}{fileExt}";
 
             // save file to destination folder
             string destinationFileName = "";

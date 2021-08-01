@@ -118,12 +118,13 @@ namespace FolderMillPrintApiTest
             var printRequest = GetPrintRequest();
             string fileName = System.IO.Path.GetFileNameWithoutExtension(printRequest.FileName);
             string fileExt = System.IO.Path.GetExtension(printRequest.FileName);
+            string printerName = printRequest.PrinterName.Replace(" ", "_");
 
             var mockConfig = new Mock<IAppSettings>();
             mockConfig.Setup(cfg => cfg.PrintConfig).Returns(SetupConfig());
             var controller = new FolderMillPrintApi.Controllers.Print(mockConfig.Object);
 
-            string expectedFileName = $"{DateTime.Now.ToString("yyMMdd_hhmmss")}_{fileName}_{printRequest.Username}_{printRequest.PrinterName}{fileExt}";
+            string expectedFileName = $"{DateTime.Now.ToString("yyMMdd_hhmmss")}_{fileName}_{printRequest.Username}_{printerName.Trim()}{fileExt}";
             string fullPathFileName = System.IO.Path.Combine(SetupConfig().HotFolder, expectedFileName);
 
             // Act
