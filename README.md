@@ -17,16 +17,19 @@ All configuration stored in appsettings.json
 }
 ```
 
-- ```HotFolder``` : This pointing to FolderMill "hot folder". All received file will be stored in this folder to be processed by FolderMill.
-- ```Printers``` : List of available printers. This list of current available printer. This information can be used to fill in PrinterName parameter when requesting API to print your file.
+- ```HotFolder``` : This point to FolderMill "hot folder". All received files will be stored in this folder to be processed by FolderMill.
+- ```Printers``` : List of available printers. This list all available printer. This information can be used to fill in PrinterName parameter when requesting API to print your file.
 
 ### FolderMill Configuration
 You should configure FolderMill to watch the same hot folder path as the configuration file.
-You should create each workflow for each printer. The file will be processed using filename filter. All files should be ended with printer name information.
-This will tell FolderMill what printer that will be used to print the received file.
-If the printer name contain space, then the space should be replaced by underscore "_".
-For example, if file should be printed with "Canon E410" Printer, then you should create rules Process Only "*Canon_E410.*". Then add action to print filtered document to Canon E410 printer.
-Refer to FolderMill documentation page for more information about how to configure FolderMill workflow.
+
+Create each workflow for each printer. The file will be processed using filename filter. All files should be ended with printer name information.
+This will tell FolderMill what printer should be used to print the received file.
+
+If the printer name contain space, then it should be replaced by underscore "_".
+For example, if a file should be printed with "Canon E410" Printer, then you should create rules *Process Only "Canon_E410"*. Then add action to print filtered document to Canon E410 printer.
+
+Refer to [FolderMill documentation page](https://www.foldermill.com/kb/user-guide "https://www.foldermill.com/kb/user-guide") for more information about how to configure FolderMill workflow.
 
 ## Request to API
 ### List of available printer
@@ -64,4 +67,4 @@ This is the json format you should POST to API.
 If your request succeeded, you will get ```HTTP OK 200``` code. But if failed, you will get ```HTTP BADREQUEST 400``` code, with list of description why it failed.
 
 
-Please note, this Web API project using docker :whale:, so you may want run docker desktop if you already install it, or instll it first before run, or maybe simply choose IISExpress if you want to run it directly.
+Please note, this Web API project using docker :whale:, so you may want to run docker desktop if you already install it, or instll it first before run, or maybe simply choose IISExpress if you want to run it directly.
